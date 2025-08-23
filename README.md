@@ -59,9 +59,9 @@
 <img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
 
 ```python
-class KarthikkAI:
+class J.A.R.V.I.S:
     def __init__(self):
-        self.name = "Karthikk" 
+        self.name = "J.A.R.V.I.S" 
         self.role = "AI/ML Explorer & Space Science Enthusiast"
         self.location = "🌍 Earth → 🌙 Moon (in spirit)"
         self.current_mission = "Lunar crater & boulder detection 🔍"
