@@ -140,7 +140,6 @@ class J.A.R.V.I.S:
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge&logo=plotly&logoColor=white)
@@ -148,10 +147,8 @@ class J.A.R.V.I.S:
 
 ### <img src="https://user-images.githubusercontent.com/74038190/212257468-1e9a91f1-b626-4baa-b15d-5c385061f135.gif" width="30"> Geospatial & Scientific Computing
 
-![GDAL](https://img.shields.io/badge/GDAL-5CAE58?style=for-the-badge&logo=osgeo&logoColor=white)
 ![QGIS](https://img.shields.io/badge/QGIS-589632?style=for-the-badge&logo=qgis&logoColor=white)
 ![Anaconda](https://img.shields.io/badge/conda-342B029.svg?&style=for-the-badge&logo=anaconda&logoColor=white)
-![ArcGIS](https://img.shields.io/badge/ArcGIS-2F5F8F?style=for-the-badge&logo=arcgis&logoColor=white)
 
 ### <img src="https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif" width="30"> Cloud & DevOps
 
@@ -498,7 +495,7 @@ console.log(reverseString("Hello World")); // "dlroW olleH"
 
 #### 🎨 ASCII Art Corner
 ```
-    ★彡[ᴋᴀʀᴛʜɪᴋᴋ ᴀɪ]彡★
+    ★彡[ᴋᴀʀᴛʜɪᴋᴋ]彡★
          ∩───∩
         (  ◕   ◕ )
          ＼   ᵔ   ／
