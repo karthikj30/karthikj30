@@ -299,7 +299,8 @@ def two_sum(nums, target):
 </details>
 
 ### 🎊 Visitor's Guestbook
-<a href="https://github.com/karthikj30/karthikj30/issues/new?assignees=&labels=guestbook&template=guestbook.md&title=%5BGUESTBOOK%5D+Your+Name+Here">
+
+<a href="https://github.com/karthikj30/karthikj30/issues/new?title=Guestbook%20Entry&body=**Your%20Name:**%20%0A**From:**%20%0A**Message:**%20%0A%0A**What%20brought%20you%20here?**%20%0A-%20Found%20through%20search%0A-%20Your%20projects%0A-%20Mutual%20connections%0A-%20Random%20browsing%0A-%20Other:%20%0A%0A**Any%20feedback?**%20%0A%0A----%0AThanks%20for%20visiting! 🌟">
   <img src="https://img.shields.io/badge/📝%20Sign%20My%20Guestbook-FF69B4?style=for-the-badge&logo=github&logoColor=white" alt="Sign Guestbook">
 </a>
 
@@ -307,7 +308,7 @@ def two_sum(nums, target):
 <summary>📖 Recent Guestbook Entries</summary>
 
 <!-- GUESTBOOK:START -->
-*Be the first to sign my guestbook!*
+*Be the first to sign my guestbook! Click the button above to leave a message.*
 <!-- GUESTBOOK:END -->
 
 </details>
