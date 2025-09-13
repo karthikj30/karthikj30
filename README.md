@@ -1,8 +1,6 @@
-# <div align="center">🌌 Welcome to Karthik's Universe 🌌</div>
-
 <div align="center">
   
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Karthik's%20Universe&fontSize=70&fontColor=fff&animation=twinkling&fontAlignY=32" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Welcome%20to%20Karthik's%20Universe&fontSize=60&fontColor=fff&animation=twinkling&fontAlignY=32" width="100%"/>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=35&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&multiline=true&width=800&height=120&lines=%F0%9F%9A%80+AI%2FML+Explorer;%F0%9F%8C%99+Lunar+Crater+Detective;%F0%9F%93%8A+Data+Storyteller;%F0%9F%94%AD+Space+Science+Enthusiast)](https://git.io/typing-svg)
 
