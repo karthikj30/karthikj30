@@ -161,7 +161,7 @@ class SpaceExplorer:
 </table>
 
 ### 🎵 Currently Jamming To
-[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=karthikj30&cover_image=true&theme=compact&show_offline=false&background_color=121212&interchange=false&bar_color=53b14f&bar_color_cover=false)](https://open.spotify.com/playlist/37i9dQZF1E4oJSdHZrVjxD?si=pnnAN-XHS9eAZpgikNEZRg&utm_source=copy-link)
+[![spotify-github-profile](https://open.spotify.com/user/wkje3v4wc49r3umeyrm9x94z5?si=CL9G_7F5T8-auHhQcE6B5g&utm_source=copy-link)](https://open.spotify.com/playlist/37i9dQZF1E4oJSdHZrVjxD?si=pnnAN-XHS9eAZpgikNEZRg&utm_source=copy-link)
 
 </div>
 
