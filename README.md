@@ -240,15 +240,12 @@ Advanced spectral data processing for planetary science
 
 ---
 
-## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Snake Game Contribution
+## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Contribution Animation
 
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg">
-</picture>
+### 🎮 Pac-Man Game Animation
+<img src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg" alt="Pac-Man eating my contributions"/>
 
 </div>
 
