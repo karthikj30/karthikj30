@@ -1,7 +1,7 @@
 name: Generate pacman animation
 on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
+  schedule:
+    - cron: "0 */12 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -17,6 +17,17 @@ jobs:
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
+          theme: |
+            {
+              "background": "#0d1117",
+              "dots": {
+                "level0": "#161b22",
+                "level1": "#0e4429", 
+                "level2": "#006d32",
+                "level3": "#26a641",
+                "level4": "#39d353"
+              }
+            }
       - name: push pacman-contribution-graph.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
