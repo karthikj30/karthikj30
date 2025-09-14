@@ -308,7 +308,6 @@ print(longest_palindrome("babad"))  # Output: "bab" or "aba"
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/karthikj30)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/karthikj30)
 [![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=todoist&logoColor=white)](https://your-portfolio-url.com)
 
 ### 📊 Daily Inspiration
 <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=synthwave&border=true&quote_color=bb2acf&author_color=bb2acf&bg_color=0d1117"/>
