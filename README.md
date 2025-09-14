@@ -245,7 +245,12 @@ Advanced spectral data processing for planetary science
 <div align="center">
 
 ### 🎮 Pac-Man Game Animation
-<img src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg" alt="Pac-Man eating my contributions"/>
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph.svg" alt="Pac-Man eating my contributions">
+
+</div>
 
 </div>
 
