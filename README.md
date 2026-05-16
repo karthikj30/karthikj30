@@ -2,7 +2,7 @@
   
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Welcome%20to%20Karthik's%20Universe&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=35&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&multiline=true&width=800&height=120&lines=%F0%9F%9A%80+AI%2FML+Explorer;%F0%9F%8C%99+Lunar+Crater+Detective;%F0%9F%93%8A+Data+Storyteller;%F0%9F%94%AD+Space+Science+Enthusiast)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=35&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&multiline=true&width=800&height=120&lines=%F0%9F%9A%80+IT+Engineer+%26+Hackathon+Hunter;%F0%9F%A4%96+AI%2FML+%26+GenAI+Explorer;%F0%9F%93%8A+Full+Stack+Developer;%F0%9F%94%AD+Building+for+the+Real+World)](https://git.io/typing-svg)
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="700">
 
@@ -58,23 +58,33 @@
 <img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
 
 ```python
-class SpaceExplorer:
+class KarthikJanardhan:
     def __init__(self):
-        self.name = "Karthik"
-        self.role = "AI/ML Explorer & Space Science Enthusiast"
-        self.location = "🌍 Earth → 🌙 Moon (in spirit)"
-        self.current_mission = "Lunar crater & boulder detection 🔍"
-        self.passion = ["🤖 AI/ML", "🌌 Planetary Science", "📊 Data Viz"]
-        self.philosophy = "Every crater tells a cosmic story 🌙✨"
+        self.name = "Karthik Janardhan"
+        self.role = "3rd Year IT Student @ SFIT Mumbai"
+        self.location = "🌍 Mumbai, Maharashtra, India"
+        self.cgpi = 8.40
+        self.email = "karthikjanardhan5@gmail.com"
+        self.passion = ["🤖 AI/ML & GenAI", "🌐 Full Stack Dev", "🏆 Hackathons"]
+        self.philosophy = "Jack of all trades... but mastering them one by one 💪"
+        self.hackathons_won = ["Colloquium'25 🥇", "OpenAI x NextWave 🥈"]
         self.coffee_consumed = float('inf')
-        
+
     def get_current_projects(self):
         return {
-            "🔭 Lunar Analysis": "AI/ML for Chandrayaan datasets",
-            "🛰️ Hyperspectral": "Advanced image processing",
-            "🌍 Geospatial": "Interactive visualization tools",
-            "🧠 Deep Learning": "Next-gen architectures"
+            "🛒 VendorConnect": "Street food vendor platform (Python, OpenAI, Android)",
+            "📚 Skillora": "Career growth platform (Django, MongoDB)",
+            "🔥 CodeMinds": "Fire detection & crowd management (Python, OpenCV)",
+            "🏛️ Itihaas": "Indian heritage tourism platform (Flask, SQLite)"
         }
+
+    def get_achievements(self):
+        return [
+            "🥇 Winner – Colloquium'25 Inter-College IT Hackathon",
+            "🥈 Runner-Up – OpenAI × NextWave Hackathon (1700+ teams)",
+            "⭐ Top 50 Learner – Google Cloud GenAI Academy (250K+ participants)",
+            "🏅 Top 1 Performer – Gen AI Academy, earning 800 points"
+        ]
 ```
 
 <details>
@@ -84,16 +94,16 @@ class SpaceExplorer:
 
 | 🚀 Current Mission | 🌟 Status | 🎯 Progress |
 |-------------------|-----------|-------------|
-| 🔭 Lunar Crater Detection | 🟢 Active | ████████░░ 80% |
-| 🤖 AI Model Training | 🟡 In Progress | ██████░░░░ 60% |
-| 📊 Data Visualization | 🔵 Planning | ███░░░░░░░ 30% |
-| 🌌 Space Research | 🟢 Ongoing | ██████████ 100% |
+| 🏆 Hackathon Prep & Grinding | 🟢 Active | ████████░░ 80% |
+| 🤖 GenAI & LLM Integration | 🟢 Active | ████████░░ 80% |
+| 🌐 Full Stack Projects | 🟡 In Progress | ██████░░░░ 60% |
+| 📱 Android Development | 🔵 Exploring | ███░░░░░░░ 30% |
 
 ### ⚡ Fun Galactic Facts
-- 🌙 I analyze lunar craters like astronomers read star maps
-- 🤖 My neural networks dream of electric sheep on Mars  
-- ☕ I've consumed enough coffee to fuel a space mission
-- 🔭 I believe AI + Space Science = Future of exploration
+- 🏆 I turn hackathon problems into award-winning solutions
+- 🤖 Trained on Google Cloud GenAI, OpenAI, and IBM AI — like a real AI myself
+- ☕ I've consumed enough coffee to power a Mumbai local train
+- 💡 I believe Full Stack + AI = The future of everything
 
 </details>
 
@@ -103,13 +113,23 @@ class SpaceExplorer:
 
 <div align="center">
 
-### Programming Languages & Frameworks
+### Programming Languages
 ![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
-![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+
+### Web & Frameworks
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ### AI/ML & Data Science
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
@@ -118,12 +138,111 @@ class SpaceExplorer:
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![NumPy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+
+### Databases
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
 ### Cloud & DevOps
-![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+
+</div>
+
+---
+
+## 🏆 Achievements & Certifications
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+### 🎖️ Hackathon Glory
+🥇 **Colloquium'25** – Inter-College IT Hackathon Winner<br/>
+🥈 **OpenAI × NextWave** – Runner-Up (1,700+ teams)<br/>
+🚀 **Bharatiya Antariksh Hackathon** – Acknowledged Participant<br/>
+
+</td>
+<td align="center" width="50%">
+
+### 📜 Certifications
+⭐ Google Cloud GenAI Academy – Top 50 of 250K+<br/>
+🧠 Google Cloud Virtual Internship – SmartBridge/AICTE<br/>
+🔒 Cybersecurity Analyst – Accenture (Forage)<br/>
+🤖 Introduction to Generative AI – IBM SkillsBuild<br/>
+🛸 ISRO Space Science – Government of India<br/>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Featured Projects
+
+<div align="center">
+
+<table>
+<tr>
+<td width="50%">
+<div align="center">
+<img src="https://user-images.githubusercontent.com/74038190/212257454-16e3712e-945a-4ca2-b238-408ad0bf87e6.gif" width="60">
+
+**🛒 VendorConnect**
+
+A digital platform connecting street food vendors with verified suppliers, offering group ordering for bulk discounts and real-time price alerts.
+
+`Python` `OpenAI` `Android`
+</div>
+</td>
+<td width="50%">
+<div align="center">
+<img src="https://user-images.githubusercontent.com/74038190/212257472-08e52665-c503-4bd9-aa20-f5a4dae769b5.gif" width="60">
+
+**🏛️ Itihaas**
+
+Indian heritage tourism platform with guided tours, interactive maps, rewards, and curated merchandise — 🥇 Colloquium'25 Winner!
+
+`Python-Flask` `HTML/CSS` `SQLite`
+</div>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<div align="center">
+<img src="https://user-images.githubusercontent.com/74038190/212257468-1e9a91f1-b626-4baa-b15d-5c385dfa7ed2.gif" width="60">
+
+**📚 Skillora**
+
+A centralized career growth platform offering courses, resources, and job information to support learners and professionals.
+
+`Python` `Django` `MongoDB`
+</div>
+</td>
+<td width="50%">
+<div align="center">
+<img src="https://user-images.githubusercontent.com/74038190/212257460-738ff738-247f-4445-a718-cdd0ca76e2db.gif" width="60">
+
+**🔥 CodeMinds**
+
+Real-time fire detection and crowd management system with automated alert generation, built during Google Hackathon.
+
+`Python` `OpenCV` `Computer Vision`
+</div>
+</td>
+</tr>
+</table>
 
 </div>
 
@@ -161,7 +280,9 @@ class SpaceExplorer:
 </table>
 
 ### 🎵 Currently Jamming To
-[![spotify-github-profile](https://open.spotify.com/user/wkje3v4wc49r3umeyrm9x94z5?si=CL9G_7F5T8-auHhQcE6B5g&utm_source=copy-link)](https://open.spotify.com/playlist/37i9dQZF1E4oJSdHZrVjxD?si=pnnAN-XHS9eAZpgikNEZRg&utm_source=copy-link)
+<a href="https://open.spotify.com/user/wkje3v4wc49r3umeyrm9x94z5">
+  <img src="https://img.shields.io/badge/Spotify-Karthik's%20Playlist-1DB954?style=for-the-badge&logo=spotify&logoColor=white" alt="Spotify"/>
+</a>
 
 </div>
 
@@ -182,57 +303,26 @@ class SpaceExplorer:
 
 ---
 
-## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Featured Projects
-
-<div align="center">
-
-<table>
-<tr>
-<td width="50%">
-<div align="center">
-<img src="https://user-images.githubusercontent.com/74038190/212257454-16e3712e-945a-4ca2-b238-408ad0bf87e6.gif" width="60">
-
-**🌙 Lunar Crater Detection**
-
-AI-powered analysis of lunar surface features using Chandrayaan data
-</div>
-</td>
-<td width="50%">
-<div align="center">
-<img src="https://user-images.githubusercontent.com/74038190/212257472-08e52665-c503-4bd9-aa20-f5a4dae769b5.gif" width="60">
-
-**🌈 Hyperspectral Analysis**
-
-Advanced spectral data processing for planetary science
-</div>
-</td>
-</tr>
-</table>
-
-</div>
-
----
-
 ## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Current Focus Areas
 
 <table>
 <tr>
 <td width="50%">
 
-### 🌙 Lunar Science
-- 🔍 Crater morphology analysis
-- 🗺️ Surface composition mapping
-- ⏰ Impact chronology studies
-- 📏 Boulder size-frequency distribution
+### 🌐 Full Stack Development
+- ⚛️ React.js & Node.js applications
+- 🔌 RESTful APIs & Express.js
+- 🐍 Django & Flask backends
+- 📱 Android app development
 
 </td>
 <td width="50%">
 
-### 🤖 AI/ML Development
-- 👁️ Computer vision for planetary surfaces
-- 🌈 Hyperspectral data processing
-- ⚡ Deep learning model optimization
-- 🧠 Neural architecture search
+### 🤖 AI/ML & GenAI
+- 🧠 Large Language Models & Prompt Engineering
+- 👁️ Computer Vision (OpenCV, YOLO)
+- ☁️ Google Cloud Vertex AI & Gemini APIs
+- 🔗 Multimodal RAG & AI pipelines
 
 </td>
 </tr>
@@ -240,17 +330,15 @@ Advanced spectral data processing for planetary science
 
 ---
 
-## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Contribution Animation
+## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Contribution Snake
 
 <div align="center">
 
-### 🎮 Pac-Man Game Animation
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph.svg" alt="Pac-Man eating my contributions">
-
-</div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg"/>
+  <img alt="github-snake" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake-dark.svg" width="100%"/>
+</picture>
 
 </div>
 
@@ -306,10 +394,11 @@ print(longest_palindrome("babad"))  # Output: "bab" or "aba"
 
 <div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/karthikj30)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/karthikj30)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/karthikj30)
-[![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/karthik-janardhan-73a8b12a8)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/karthik.janardhan)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@karthikj30)
+[![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:karthikjanardhan5@gmail.com)
+[![ORCID](https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-2071-614X)
 
 ### 📊 Daily Inspiration
 <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=synthwave&border=true&quote_color=bb2acf&author_color=bb2acf&bg_color=0d1117"/>
@@ -320,7 +409,7 @@ print(longest_palindrome("babad"))  # Output: "bab" or "aba"
 
 <div align="center">
 
-### <img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif" width="30"> "The cosmos is within us. We are made of star-stuff." - Carl Sagan
+### <img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif" width="30"> "The best way to predict the future is to build it." - Alan Kay
 
 **🌟 Thanks for visiting my cosmic corner of GitHub! 🌟**
 
