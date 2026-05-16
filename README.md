@@ -1,6 +1,6 @@
 <div align="center">
   
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Welcome%20to%20Karthik's%20Universe&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Welcome%20to%20My%20Universe&fontSize=50&fontColor=fff&animation=twinkling&fontAlignY=35" width="100%"/>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=35&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&multiline=true&width=800&height=120&lines=%F0%9F%9A%80+IT+Engineer+%26+Hackathon+Hunter;%F0%9F%A4%96+AI%2FML+%26+GenAI+Explorer;%F0%9F%93%8A+Full+Stack+Developer;%F0%9F%94%AD+Building+for+the+Real+World)](https://git.io/typing-svg)
 
@@ -88,7 +88,7 @@ class KarthikJanardhan:
 ```
 
 <details>
-<summary><img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif" width="30"> Click to explore my cosmic journey!</summary>
+<summary>✨ Click to explore my cosmic journey!</summary>
 
 ### 🎯 Mission Control Dashboard
 
@@ -292,10 +292,10 @@ Real-time fire detection and crowd management system with automated alert genera
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=karthikj30&show_icons=true&theme=synthwave&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=bb2acf&text_color=bb2acf&title_color=bb2acf"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=karthikj30&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&text_color=bb2acf&title_color=bb2acf"/>
+<img width="49%" src="https://github-readme-stats.vercel.app/api?username=karthikj30&show_icons=true&theme=synthwave&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=bb2acf&text_color=bb2acf&title_color=bb2acf&rank_icon=github"/>
+<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=karthikj30&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&text_color=bb2acf&title_color=bb2acf&langs_count=8"/>
 
-<img src="https://streak-stats.demolab.com?user=karthikj30&theme=synthwave&hide_border=true&background=0D1117&stroke=BB2ACF&ring=BB2ACF&fire=BB2ACF&currStreakLabel=BB2ACF" alt="GitHub Streak"/>
+<img width="70%" src="https://github-readme-streak-stats.herokuapp.com?user=karthikj30&theme=synthwave&hide_border=true&background=0D1117&stroke=BB2ACF&ring=BB2ACF&fire=BB2ACF&currStreakLabel=BB2ACF&sideLabels=BB2ACF&dates=BB2ACF"/>
 
 <img src="https://github-profile-trophy.vercel.app/?username=karthikj30&theme=synthwave&no-frame=true&no-bg=true&margin-w=4&row=1&column=6"/>
 
@@ -330,14 +330,14 @@ Real-time fire detection and crowd management system with automated alert genera
 
 ---
 
-## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Contribution Snake
+## <img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" width="30"> Pac-Man Eating My Contributions 👾
 
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake.svg"/>
-  <img alt="github-snake" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/github-contribution-grid-snake-dark.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph.svg"/>
+  <img alt="pacman-graph" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph-dark.svg" width="100%"/>
 </picture>
 
 </div>
