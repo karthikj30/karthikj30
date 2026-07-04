@@ -37,7 +37,7 @@
 </tr>
 <tr>
 <td align="center">
-  <a href="https://tetris.com/play-tetris">
+  <a href="https://tetris.com/play-now">
     <img src="https://img.shields.io/badge/🎯%20Tetris-FF6B6B?style=for-the-badge&logo=nintendo&logoColor=white" alt="Tetris"/>
   </a>
 </td>
@@ -292,12 +292,12 @@ Real-time fire detection and crowd management system with automated alert genera
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=karthikj30&show_icons=true&theme=synthwave&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=bb2acf&text_color=bb2acf&title_color=bb2acf&rank_icon=github"/>
-<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=karthikj30&layout=compact&theme=synthwave&hide_border=true&bg_color=0d1117&text_color=bb2acf&title_color=bb2acf&langs_count=8"/>
+<img width="49%" src="https://github-stats-extended.vercel.app/api?username=karthikj30&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&rank_icon=github&cache_seconds=86400"/>
+<img width="49%" src="https://github-stats-extended.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=86400"/>
 
-<img width="70%" src="https://github-readme-streak-stats.herokuapp.com?user=karthikj30&theme=synthwave&hide_border=true&background=0D1117&stroke=BB2ACF&ring=BB2ACF&fire=BB2ACF&currStreakLabel=BB2ACF&sideLabels=BB2ACF&dates=BB2ACF"/>
+<img width="70%" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF"/>
 
-<img src="https://github-profile-trophy.vercel.app/?username=karthikj30&theme=synthwave&no-frame=true&no-bg=true&margin-w=4&row=1&column=6"/>
+<img src="https://github-profile-trophy.vercel.app/?username=karthikj30&theme=algolia&no-frame=true&margin-w=4&row=1&column=6"/>
 
 </div>
 
