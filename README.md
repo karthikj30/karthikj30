@@ -293,9 +293,9 @@ Real-time fire detection and crowd management system with automated alert genera
 <div align="center">
 
 <img width="49%" src="https://github-stats-extended.vercel.app/api?username=karthikj30&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&cache_seconds=86400"/>
-<img width="49%" src="https://github-stats-extended.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=86400"/>
+<img width="49%" src="https://github-stats-extended.vercel.app/api/top-langs/?username=karthikj30&layout=donut-vertical&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=86400"/>
 
-<img width="70%" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakNum=58A6FF&sideNums=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF&disable_animations=true"/>
+<img width="70%" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakNum=58A6FF&sideNums=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF"/>
 
 <img src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/trophy.svg"/>
 
