@@ -341,7 +341,7 @@ Real-time fire detection and crowd management system with automated alert genera
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph-dark.svg"/>
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph.svg"/>
-  <img alt="pacman-graph" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph-dark.svg" width="100%"/>
+  <img alt="pacman-graph" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/pacman-contribution-graph.svg" width="100%"/>
 </picture>
 
 </div>
