@@ -2,21 +2,20 @@ name: Generate Profile Graphics
 
 on:
   schedule:
-    - cron: "0 0 * * *"        # Runs automatically once a day
-  workflow_dispatch:            # Lets you trigger it manually from the Actions tab
-  push:
-    branches:
-      - main
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   generate:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20     # was 10; docs recommend 20
 
     steps:
-      - name: Generate pacman-contribution-graph.svg
+      - uses: actions/checkout@v4
+
+      - name: Generate pacman graphs
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
@@ -30,12 +29,14 @@ jobs:
           no-frame: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Both generators write into the SAME dist/ folder above, so this single
-      # push step commits everything together — nothing gets overwritten.
-      - name: Push all graphics to the output branch
+      - name: Verify all files exist
+        run: ls -la dist/
+
+      - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: dist
+          keep_files: true      # ← stops one failure wiping the others
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
