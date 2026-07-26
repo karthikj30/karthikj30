@@ -45,11 +45,25 @@ jobs:
           # workflow valid until that secret exists.
           token: ${{ secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
 
+      # keep_files on the deploy step does NOT protect a file that is absent
+      # from dist/ - the deploy force-pushes and the old copy is lost. That is
+      # exactly how trophy.svg got deleted once the job started reaching the
+      # deploy step again. So re-publish the last good copy explicitly.
+      - name: Reuse last published trophy.svg if generation failed
+        run: |
+          mkdir -p dist
+          if [ -f dist/trophy.svg ]; then
+            echo "trophy.svg generated fresh"
+          elif curl -fsSL --retry 3 -o dist/trophy.svg \
+              "https://raw.githubusercontent.com/${{ github.repository }}/output/trophy.svg"; then
+            echo "::warning::Trophy generation failed; re-publishing the last good trophy.svg. Add a TROPHY_TOKEN secret (PAT with read:user) to fix the generation itself."
+          else
+            echo "::warning::Trophy generation failed and no previous trophy.svg exists on the output branch. The README trophy image will 404 until a TROPHY_TOKEN secret is added."
+          fi
+
       - name: Verify all files exist
         run: |
           ls -la dist/ || { echo "::error::dist/ missing - no graphics generated"; exit 1; }
-          test -f dist/trophy.svg \
-            || echo "::warning::trophy.svg not generated. Existing one on the output branch is preserved by keep_files. Add a TROPHY_TOKEN secret (PAT with read:user) to fix."
 
       - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
