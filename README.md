@@ -294,10 +294,18 @@ Real-time fire detection and crowd management system with automated alert genera
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=22&duration=2500&pause=800&color=58A6FF&center=true&vCenter=true&width=600&height=40&lines=%F0%9F%93%8A+Let+the+numbers+do+the+talking...)](https://git.io/typing-svg)
 
-<img width="49%" src="https://github-readme-stats-eight-gamma-66.vercel.app/api?username=karthikj30&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&cache_seconds=86400"/>
-<img width="49%" src="https://github-readme-stats-eight-gamma-66.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=86400"/>
+<img height="195" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakNum=58A6FF&sideNums=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF"/>
 
-<img width="70%" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakNum=58A6FF&sideNums=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF"/>
+<!--
+  Size these two by HEIGHT, never width. Their natural sizes are 467x195
+  (stats) and 300x190 (top-langs compact, 8 langs), so a shared width like
+  49% squashes the stats card to 0.92x and stretches the languages card to
+  1.44x - which is why they used to look mismatched. Matching on height 195
+  keeps both at ~1.00x and they sit side by side at 467 + 308 = 775px, inside
+  the ~880px README column.
+-->
+<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api?username=karthikj30&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&cache_seconds=86400"/>
+<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=86400"/>
 
 <img width="70%" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/trophy.svg"/>
 
