@@ -27,6 +27,12 @@ jobs:
           file: dist/trophy.svg
           theme: algolia
           no-frame: true
+          # Without these the action defaults to cols=-1, which lays every
+          # trophy out in ONE row. Each new trophy makes the SVG wider, so
+          # GitHub scales the whole strip down and they all get smaller.
+          # A fixed grid keeps each panel at full 115px and wraps instead.
+          max-cols: 4
+          max-rows: 3
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify all files exist
