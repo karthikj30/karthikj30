@@ -45,25 +45,37 @@ jobs:
           # workflow valid until that secret exists.
           token: ${{ secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
 
-      # keep_files on the deploy step does NOT protect a file that is absent
-      # from dist/ - the deploy force-pushes and the old copy is lost. That is
-      # exactly how trophy.svg got deleted once the job started reaching the
-      # deploy step again. So re-publish the last good copy explicitly.
-      - name: Reuse last published trophy.svg if generation failed
+      # The deploy step force-pushes dist/ as the ENTIRE contents of the output
+      # branch, so the branch always ends up equal to dist/. keep_files does not
+      # change that. Any generator that fails or silently no-ops therefore
+      # deletes its artifact from the branch and the README image starts 404ing.
+      # Both graphics have been lost this way. So before deploying, backfill any
+      # missing artifact with the copy that is already published.
+      - name: Backfill any artifact this run did not produce
         run: |
           mkdir -p dist
-          if [ -f dist/trophy.svg ]; then
-            echo "trophy.svg generated fresh"
-          elif curl -fsSL --retry 3 -o dist/trophy.svg \
-              "https://raw.githubusercontent.com/${{ github.repository }}/output/trophy.svg"; then
-            echo "::warning::Trophy generation failed; re-publishing the last good trophy.svg. Add a TROPHY_TOKEN secret (PAT with read:user) to fix the generation itself."
-          else
-            echo "::warning::Trophy generation failed and no previous trophy.svg exists on the output branch. The README trophy image will 404 until a TROPHY_TOKEN secret is added."
+          missing=0
+          for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg; do
+            if [ -s "dist/$f" ]; then
+              echo "$f: generated fresh"
+            elif curl -fsSL --retry 3 -o "dist/$f" \
+                "https://raw.githubusercontent.com/${{ github.repository }}/output/$f"; then
+              echo "::warning::$f was not generated this run; re-publishing the last good copy."
+            else
+              rm -f "dist/$f"
+              missing=1
+              echo "::warning::$f was not generated and no published copy exists. Its README image will 404."
+            fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo "::warning::Trophy generation needs a TROPHY_TOKEN secret (PAT with read:user)."
           fi
 
       - name: Verify all files exist
         run: |
           ls -la dist/ || { echo "::error::dist/ missing - no graphics generated"; exit 1; }
+          # Refuse to publish an empty dist/, which would wipe every artifact.
+          [ -n "$(ls -A dist/)" ] || { echo "::error::dist/ is empty - refusing to deploy and wipe the output branch"; exit 1; }
 
       - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
