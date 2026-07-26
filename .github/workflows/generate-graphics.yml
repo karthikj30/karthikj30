@@ -19,6 +19,10 @@ jobs:
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
+          # Defaults to github.token, which is repo-scoped and sees only a
+          # subset of the contribution calendar - the rendered maze came out
+          # far sparser than the real graph. Reuse the user-scoped PAT.
+          github_token: ${{ secrets.TROPHY_TOKEN || github.token }}
 
       # continue-on-error matters here: this step reads user-level GraphQL data
       # and had been failing daily since 2026-07-22 with "Failed to fetch user
@@ -33,11 +37,13 @@ jobs:
           file: dist/trophy.svg
           theme: algolia
           no-frame: true
-          # Without these the action defaults to cols=-1, which lays every
-          # trophy out in ONE row. Each new trophy makes the SVG wider, so
-          # GitHub scales the whole strip down and they all get smaller.
-          # A fixed grid keeps each panel at full 115px and wraps instead.
-          max-cols: 4
+          # Panels are 115px with 10px margins, so the SVG is 115*cols +
+          # 10*(cols-1) wide. The README renders it at width="70%" of an ~880px
+          # column, about 616px. At 4 cols the SVG is only 490px, so the browser
+          # scales it UP 1.26x and the trophies render oversized at ~145px. At
+          # 5 cols it is 615px, a 1.00x scale and true 115px panels, and the
+          # current 9 trophies wrap to a tidy 5 + 4.
+          max-cols: 5
           max-rows: 3
           # secrets.GITHUB_TOKEN is repo-scoped and cannot read the user-level
           # data this action needs. Set a TROPHY_TOKEN repo secret (a PAT with
