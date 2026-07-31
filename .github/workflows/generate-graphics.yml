@@ -51,6 +51,16 @@ jobs:
           # workflow valid until that secret exists.
           token: ${{ secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
 
+      # Replaces streak-stats.demolab.com and github-readme-activity-graph,
+      # both shared public instances that started returning "failed to retrieve
+      # contributions" once their own GitHub tokens hit limits. Same data, same
+      # PAT the steps above already use, no third party in the path.
+      - name: Generate streak + activity cards
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.TROPHY_TOKEN || github.token }}
+        run: node .github/scripts/contrib-cards.mjs "${{ github.repository_owner }}" dist
+
       # The deploy step force-pushes dist/ as the ENTIRE contents of the output
       # branch, so the branch always ends up equal to dist/. keep_files does not
       # change that. Any generator that fails or silently no-ops therefore
@@ -61,7 +71,8 @@ jobs:
         run: |
           mkdir -p dist
           missing=0
-          for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg; do
+          for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg \
+                   streak.svg activity-graph.svg; do
             if [ -s "dist/$f" ]; then
               echo "$f: generated fresh"
             elif curl -fsSL --retry 3 -o "dist/$f" \

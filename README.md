@@ -294,7 +294,7 @@ Real-time fire detection and crowd management system with automated alert genera
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=22&duration=2500&pause=800&color=58A6FF&center=true&vCenter=true&width=600&height=40&lines=%F0%9F%93%8A+Let+the+numbers+do+the+talking...)](https://git.io/typing-svg)
 
-<img height="195" src="https://streak-stats.demolab.com?user=karthikj30&hide_border=true&background=0D1117&stroke=58A6FF&ring=58A6FF&fire=58A6FF&currStreakNum=58A6FF&sideNums=58A6FF&currStreakLabel=58A6FF&sideLabels=58A6FF&dates=58A6FF"/>
+<img height="195" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/streak.svg"/>
 
 <!--
   Size these two by HEIGHT, never width. Their natural sizes are 467x195
@@ -309,7 +309,7 @@ Real-time fire detection and crowd management system with automated alert genera
 
 <img width="70%" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/trophy.svg"/>
 
-<img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=karthikj30&bg_color=0d1117&color=58A6FF&line=58A6FF&point=58A6FF&area=true&area_color=58A6FF&title_color=58A6FF&hide_border=true"/>
+<img width="90%" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/activity-graph.svg"/>
 
 </div>
 
