@@ -55,6 +55,15 @@ jobs:
       # both shared public instances that started returning "failed to retrieve
       # contributions" once their own GitHub tokens hit limits. Same data, same
       # PAT the steps above already use, no third party in the path.
+      # Non-blocking on purpose: this workflow's job is publishing images, and a
+      # red test should surface as a warning rather than abort the run before
+      # the deploy step. Point at the file, not the directory - a directory run
+      # also tries to execute contrib-cards.mjs itself, which exits 1 without a
+      # token and looks like a test failure.
+      - name: Test the card generator
+        continue-on-error: true
+        run: node --test .github/scripts/contrib-cards.test.mjs
+
       - name: Generate streak + activity cards
         continue-on-error: true
         env:
