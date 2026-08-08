@@ -98,7 +98,7 @@ async function fetchAllDays() {
   console.log(
     "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
   );
-  return list;
+  return { list, restricted, allTimeCommits };
 }
 
 /** Computes total contributions plus current and longest streak. */
@@ -226,7 +226,7 @@ async function main() {
   }
   const { writeFile, mkdir } = await import("node:fs/promises");
 
-  const days = await fetchAllDays();
+  const { list: days, restricted, allTimeCommits } = await fetchAllDays();
   if (!days.length) {
     throw new Error("contribution calendar came back empty");
   }
@@ -239,6 +239,26 @@ async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(`${OUT_DIR}/streak.svg`, streakCard(stats));
   await writeFile(`${OUT_DIR}/activity-graph.svg`, activityGraph(days));
+  // Published so these numbers can be read straight off the output branch.
+  // Workflow logs get truncated from the tail, which made them impractical to
+  // inspect, and "all-time commits vs last-year commits" is the figure that
+  // decides what the stats card can honestly show.
+  await writeFile(
+    `${OUT_DIR}/stats.json`,
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        totalContributions: stats.total,
+        allTimeCommitContributions: allTimeCommits,
+        restrictedContributionsCount: restricted,
+        currentStreak: stats.current,
+        longestStreak: stats.longest,
+        last14Days: days.slice(-14),
+      },
+      null,
+      2,
+    ),
+  );
   console.log(`wrote ${OUT_DIR}/streak.svg and ${OUT_DIR}/activity-graph.svg`);
 }
 

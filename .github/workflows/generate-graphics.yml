@@ -81,7 +81,7 @@ jobs:
           mkdir -p dist
           missing=0
           for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg \
-                   streak.svg activity-graph.svg; do
+                   streak.svg activity-graph.svg stats.json; do
             if [ -s "dist/$f" ]; then
               echo "$f: generated fresh"
             elif curl -fsSL --retry 3 -o "dist/$f" \
