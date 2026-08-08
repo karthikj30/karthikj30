@@ -108,32 +108,38 @@ jobs:
           # Refuse to publish an empty dist/, which would wipe every artifact.
           [ -n "$(ls -A dist/)" ] || { echo "::error::dist/ is empty - refusing to deploy and wipe the output branch"; exit 1; }
 
-      # The README's stats cards are served live by a Vercel instance, not from
-      # this branch, so nothing here would notice them breaking. Three separate
-      # instances have gone dead or run out of quota already, each time
-      # discovered by eye. Check them every run and print what they render.
-      - name: Check the live stats cards render
+      # Checks the live, externally-served cards. The URLs are read out of
+      # README.md rather than written here: an earlier version hand-copied them
+      # and drifted, missing hide_border, the colours and cache_seconds. Those
+      # differences make a distinct cache entry, so the check was querying a URL
+      # nobody renders - it reported 10 issues while the real card showed 33.
+      # Reading them from the README means it always tests what the profile
+      # actually serves, and keeps working when the URLs change.
+      - name: Check the live cards render
         continue-on-error: true
-        env:
-          HOST: https://github-readme-stats-eight-gamma-66.vercel.app
         run: |
-          # Written into dist/ as well as the log: the deploy step's output is
-          # long enough that these lines fall outside a tail of the run log.
           : > dist/cards-check.txt
-          for path in \
-            "/api?username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&count_private=true" \
-            "/api/top-langs/?username=${{ github.repository_owner }}&layout=compact"; do
-            code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "${HOST}${path}") || code=000
+          mapfile -t urls < <(grep -oE 'src="https://[^"]+/api[^"]*"' README.md \
+                              | sed 's/^src="//; s/"$//' | sort -u)
+          if [ "${#urls[@]}" -eq 0 ]; then
+            echo "::warning::no card URLs found in README.md - check the src pattern"
+            echo "no card URLs found in README.md" >> dist/cards-check.txt
+          fi
+          for u in "${urls[@]}"; do
+            code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "$u") || code=000
+            short="${u#https://}"; short="${short%%\?*}"
             if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
-              echo "FAIL http=${code} ${path%%\&*}" | tee -a dist/cards-check.txt
-              head -c 300 /tmp/card.svg >> dist/cards-check.txt || true
+              echo "FAIL http=${code} ${short}" | tee -a dist/cards-check.txt
+              head -c 200 /tmp/card.svg >> dist/cards-check.txt || true
+              echo >> dist/cards-check.txt
+              echo "::warning::card failed: http=${code} ${short}"
             else
-              echo "OK http=${code} bytes=$(wc -c < /tmp/card.svg) ${path%%\&*}" \
+              echo "OK   http=${code} bytes=$(wc -c < /tmp/card.svg) ${short}" \
                 | tee -a dist/cards-check.txt
-              # Record the text the card actually rendered, so the figures and
-              # the grade are verifiable without opening the image.
+              # The text the card rendered, so figures are verifiable without
+              # opening the image.
               grep -oE '>[^<>]+</text>' /tmp/card.svg | sed 's/^>//;s|</text>||' \
-                | paste -sd'|' - | cut -c1-400 | tee -a dist/cards-check.txt
+                | paste -sd'|' - | cut -c1-300 | tee -a dist/cards-check.txt
             fi
           done
 
