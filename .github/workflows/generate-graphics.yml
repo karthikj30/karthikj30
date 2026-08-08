@@ -27,7 +27,7 @@ jobs:
           # Defaults to github.token, which is repo-scoped and sees only a
           # subset of the contribution calendar - the rendered maze came out
           # far sparser than the real graph. Reuse the user-scoped PAT.
-          github_token: ${{ secrets.TROPHY_TOKEN || github.token }}
+          github_token: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || github.token }}
 
       # continue-on-error matters here: this step reads user-level GraphQL data
       # and had been failing daily since 2026-07-22 with "Failed to fetch user
@@ -51,10 +51,10 @@ jobs:
           max-cols: 5
           max-rows: 3
           # secrets.GITHUB_TOKEN is repo-scoped and cannot read the user-level
-          # data this action needs. Set a TROPHY_TOKEN repo secret (a PAT with
-          # read:user) and it gets used instead; the fallback just keeps the
-          # workflow valid until that secret exists.
-          token: ${{ secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
+          # data this action needs. Either STATS_TOKENS or TROPHY_TOKEN is used
+          # when present; the last fallback only keeps the workflow valid while
+          # neither secret exists.
+          token: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
 
       # Replaces streak-stats.demolab.com and github-readme-activity-graph,
       # both shared public instances that started returning "failed to retrieve
@@ -72,7 +72,7 @@ jobs:
       - name: Generate streak + activity cards
         continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.TROPHY_TOKEN || github.token }}
+          GH_TOKEN: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || github.token }}
         run: node .github/scripts/contrib-cards.mjs "${{ github.repository_owner }}" dist
 
       # The deploy step force-pushes dist/ as the ENTIRE contents of the output
@@ -99,7 +99,7 @@ jobs:
             fi
           done
           if [ "$missing" = "1" ]; then
-            echo "::warning::Trophy generation needs a TROPHY_TOKEN secret (PAT with read:user)."
+            echo "::warning::Trophy generation needs a STATS_TOKENS or TROPHY_TOKEN secret (a PAT with repo, read:user, read:org)."
           fi
 
       - name: Verify all files exist
