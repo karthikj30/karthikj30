@@ -2,7 +2,12 @@ name: Generate Profile Graphics
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    # Every 30 minutes rather than once a day. A daily run meant the streak and
+    # activity cards showed yesterday's figures all day, and picked up a partial
+    # count whenever GitHub had not finished indexing the previous day by 00:00.
+    # GitHub may delay scheduled runs under load, so treat this as a floor, not
+    # a guarantee.
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
