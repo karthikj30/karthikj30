@@ -304,8 +304,8 @@ Real-time fire detection and crowd management system with automated alert genera
   keeps both at ~1.00x and they sit side by side at 467 + 308 = 775px, inside
   the ~880px README column.
 -->
-<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api?username=karthikj30&show_icons=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&cache_seconds=600"/>
-<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=600"/>
+<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api?username=karthikj30&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&icon_color=58A6FF&text_color=58A6FF&title_color=58A6FF&cache_seconds=601"/>
+<img height="195" src="https://github-readme-stats-eight-gamma-66.vercel.app/api/top-langs/?username=karthikj30&layout=compact&hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF&langs_count=8&cache_seconds=601"/>
 
 <img width="70%" src="https://raw.githubusercontent.com/karthikj30/karthikj30/output/trophy.svg"/>
 
