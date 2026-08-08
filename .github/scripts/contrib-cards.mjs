@@ -50,9 +50,15 @@ async function fetchAllDays() {
     `query($login:String!){ user(login:$login){ createdAt } }`,
     { login: LOGIN },
   );
+  // Snap to midnight UTC. createdAt carries a time of day, and stepping a year
+  // from it put every window boundary mid-day, so the boundary date was split
+  // across two queries and the merge below kept the larger half instead of the
+  // whole day. Aligning to midnight means no date is ever split.
   const created = new Date(user.createdAt);
+  created.setUTCHours(0, 0, 0, 0);
   const now = new Date();
   const days = new Map();
+  let restricted = 0;
 
   for (let from = new Date(created); from < now; from.setUTCFullYear(from.getUTCFullYear() + 1)) {
     const to = new Date(from);
@@ -61,20 +67,34 @@ async function fetchAllDays() {
       `query($login:String!,$from:DateTime!,$to:DateTime!){
         user(login:$login){
           contributionsCollection(from:$from,to:$to){
-            contributionCalendar{ weeks{ contributionDays{ date contributionCount } } }
+            restrictedContributionsCount
+            contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } }
           }
         }
       }`,
       { login: LOGIN, from: from.toISOString(), to: (to > now ? now : to).toISOString() },
     );
-    for (const w of data.user.contributionsCollection.contributionCalendar.weeks) {
+    const cc = data.user.contributionsCollection;
+    restricted += cc.restrictedContributionsCount;
+    for (const w of cc.contributionCalendar.weeks) {
       for (const d of w.contributionDays) {
+        // Windows are day-aligned, so a date appears in at most one window with
+        // a real count; other windows report it as 0 inside a padded week.
         days.set(d.date, Math.max(days.get(d.date) || 0, d.contributionCount));
       }
     }
   }
-  return [...days.entries()].sort((a, b) => a[0].localeCompare(b[0]))
+  const list = [...days.entries()].sort((a, b) => a[0].localeCompare(b[0]))
     .map(([date, count]) => ({ date, count }));
+
+  // Printed so a mismatch against the profile graph is diagnosable rather than
+  // guessed at. restrictedContributionsCount is private-repo activity, which is
+  // the usual reason a day reads lower here than on github.com.
+  console.log(`restrictedContributionsCount (all windows): ${restricted}`);
+  console.log(
+    "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
+  );
+  return list;
 }
 
 /** Computes total contributions plus current and longest streak. */
