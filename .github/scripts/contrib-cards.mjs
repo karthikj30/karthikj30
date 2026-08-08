@@ -46,9 +46,22 @@ async function gql(query, variables) {
  * contributionsCollection caps at one year per call, so this walks year by year.
  */
 async function fetchAllDays() {
-  const { user } = await gql(
-    `query($login:String!){ user(login:$login){ createdAt } }`,
+  const { user, viewer } = await gql(
+    `query($login:String!){
+      user(login:$login){ createdAt }
+      viewer{ login privateRepos: repositories(privacy: PRIVATE){ totalCount } }
+    }`,
     { login: LOGIN },
+  );
+  // Decides at a glance whether the token in use carries repo scope. Without
+  // it this reads 0 even when private repos exist, and private issues and
+  // commits go uncounted - which looks identical to a stale card.
+  const privateReposVisible = viewer?.privateRepos?.totalCount ?? 0;
+  console.log(
+    `token=${viewer?.login} privateReposVisible=${privateReposVisible}` +
+      (privateReposVisible === 0
+        ? "  <-- no repo scope, private work will not be counted"
+        : ""),
   );
   // Snap to midnight UTC. createdAt carries a time of day, and stepping a year
   // from it put every window boundary mid-day, so the boundary date was split
@@ -98,7 +111,7 @@ async function fetchAllDays() {
   console.log(
     "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
   );
-  return { list, restricted, allTimeCommits };
+  return { list, restricted, allTimeCommits, privateReposVisible };
 }
 
 /** Computes total contributions plus current and longest streak. */
@@ -226,7 +239,8 @@ async function main() {
   }
   const { writeFile, mkdir } = await import("node:fs/promises");
 
-  const { list: days, restricted, allTimeCommits } = await fetchAllDays();
+  const { list: days, restricted, allTimeCommits, privateReposVisible } =
+    await fetchAllDays();
   if (!days.length) {
     throw new Error("contribution calendar came back empty");
   }
@@ -251,6 +265,7 @@ async function main() {
         totalContributions: stats.total,
         allTimeCommitContributions: allTimeCommits,
         restrictedContributionsCount: restricted,
+        privateReposVisibleToToken: privateReposVisible,
         currentStreak: stats.current,
         longestStreak: stats.longest,
         last14Days: days.slice(-14),
