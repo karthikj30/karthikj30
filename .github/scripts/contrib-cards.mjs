@@ -46,10 +46,14 @@ async function gql(query, variables) {
  * contributionsCollection caps at one year per call, so this walks year by year.
  */
 async function fetchAllDays() {
-  const { user, viewer } = await gql(
+  const { user, viewer, issueCounts } = await gql(
     `query($login:String!){
       user(login:$login){ createdAt }
       viewer{ login privateRepos: repositories(privacy: PRIVATE){ totalCount } }
+      issueCounts: user(login:$login){
+        openIssues: issues(states: OPEN){ totalCount }
+        closedIssues: issues(states: CLOSED){ totalCount }
+      }
     }`,
     { login: LOGIN },
   );
@@ -57,8 +61,14 @@ async function fetchAllDays() {
   // it this reads 0 even when private repos exist, and private issues and
   // commits go uncounted - which looks identical to a stale card.
   const privateReposVisible = viewer?.privateRepos?.totalCount ?? 0;
+  // The exact counts the trophy and stats cards both query. Logged because the
+  // trophy reads 10 while the stats card reads 33 from the same GraphQL field,
+  // and only the API's own answer settles which is stale.
+  const issuesTotal =
+    (issueCounts?.openIssues?.totalCount ?? 0) +
+    (issueCounts?.closedIssues?.totalCount ?? 0);
   console.log(
-    `token=${viewer?.login} privateReposVisible=${privateReposVisible}` +
+    `token=${viewer?.login} privateReposVisible=${privateReposVisible} issues=${issuesTotal} (open=${issueCounts?.openIssues?.totalCount} closed=${issueCounts?.closedIssues?.totalCount})` +
       (privateReposVisible === 0
         ? "  <-- no repo scope, private work will not be counted"
         : ""),
@@ -111,7 +121,7 @@ async function fetchAllDays() {
   console.log(
     "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
   );
-  return { list, restricted, allTimeCommits, privateReposVisible };
+  return { list, restricted, allTimeCommits, privateReposVisible, issuesTotal };
 }
 
 /** Computes total contributions plus current and longest streak. */
@@ -239,7 +249,7 @@ async function main() {
   }
   const { writeFile, mkdir } = await import("node:fs/promises");
 
-  const { list: days, restricted, allTimeCommits, privateReposVisible } =
+  const { list: days, restricted, allTimeCommits, privateReposVisible, issuesTotal } =
     await fetchAllDays();
   if (!days.length) {
     throw new Error("contribution calendar came back empty");
@@ -266,6 +276,7 @@ async function main() {
         allTimeCommitContributions: allTimeCommits,
         restrictedContributionsCount: restricted,
         privateReposVisibleToToken: privateReposVisible,
+        issuesVisibleToToken: issuesTotal,
         currentStreak: stats.current,
         longestStreak: stats.longest,
         last14Days: days.slice(-14),
