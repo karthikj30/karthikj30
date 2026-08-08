@@ -103,6 +103,31 @@ jobs:
           # Refuse to publish an empty dist/, which would wipe every artifact.
           [ -n "$(ls -A dist/)" ] || { echo "::error::dist/ is empty - refusing to deploy and wipe the output branch"; exit 1; }
 
+      # The README's stats cards are served live by a Vercel instance, not from
+      # this branch, so nothing here would notice them breaking. Three separate
+      # instances have gone dead or run out of quota already, each time
+      # discovered by eye. Check them every run and print what they render.
+      - name: Check the live stats cards render
+        continue-on-error: true
+        env:
+          HOST: https://github-readme-stats-eight-gamma-66.vercel.app
+        run: |
+          for path in \
+            "/api?username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&count_private=true" \
+            "/api/top-langs/?username=${{ github.repository_owner }}&layout=compact"; do
+            code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "${HOST}${path}") || code=000
+            if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
+              echo "::warning::stats card returned HTTP ${code} for ${path%%\&*}"
+              head -c 300 /tmp/card.svg || true
+            else
+              echo "OK ${code}, $(wc -c < /tmp/card.svg) bytes: ${path%%\&*}"
+              # Surface the figures the card actually rendered.
+              grep -oE '>(Total Commits[^<]*|[A-Z]\+*\+?)</text>' /tmp/card.svg \
+                | tr -d '<>/text' | paste -sd' ' - | head -c 300
+              echo
+            fi
+          done
+
       - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
