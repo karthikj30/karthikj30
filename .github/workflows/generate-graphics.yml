@@ -81,7 +81,7 @@ jobs:
           mkdir -p dist
           missing=0
           for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg \
-                   streak.svg activity-graph.svg stats.json; do
+                   streak.svg activity-graph.svg stats.json cards-check.txt; do
             if [ -s "dist/$f" ]; then
               echo "$f: generated fresh"
             elif curl -fsSL --retry 3 -o "dist/$f" \
@@ -112,19 +112,23 @@ jobs:
         env:
           HOST: https://github-readme-stats-eight-gamma-66.vercel.app
         run: |
+          # Written into dist/ as well as the log: the deploy step's output is
+          # long enough that these lines fall outside a tail of the run log.
+          : > dist/cards-check.txt
           for path in \
             "/api?username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&count_private=true" \
             "/api/top-langs/?username=${{ github.repository_owner }}&layout=compact"; do
             code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "${HOST}${path}") || code=000
             if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
-              echo "::warning::stats card returned HTTP ${code} for ${path%%\&*}"
-              head -c 300 /tmp/card.svg || true
+              echo "FAIL http=${code} ${path%%\&*}" | tee -a dist/cards-check.txt
+              head -c 300 /tmp/card.svg >> dist/cards-check.txt || true
             else
-              echo "OK ${code}, $(wc -c < /tmp/card.svg) bytes: ${path%%\&*}"
-              # Surface the figures the card actually rendered.
-              grep -oE '>(Total Commits[^<]*|[A-Z]\+*\+?)</text>' /tmp/card.svg \
-                | tr -d '<>/text' | paste -sd' ' - | head -c 300
-              echo
+              echo "OK http=${code} bytes=$(wc -c < /tmp/card.svg) ${path%%\&*}" \
+                | tee -a dist/cards-check.txt
+              # Record the text the card actually rendered, so the figures and
+              # the grade are verifiable without opening the image.
+              grep -oE '>[^<>]+</text>' /tmp/card.svg | sed 's/^>//;s|</text>||' \
+                | paste -sd'|' - | cut -c1-400 | tee -a dist/cards-check.txt
             fi
           done
 
@@ -133,6 +137,9 @@ jobs:
         with:
           target_branch: output
           build_dir: dist
-          keep_files: true      # ← stops one failure wiping the others
+          # No keep_files here: the action rejects it as an unknown input and
+          # warns every run. It never protected anything - the deploy always
+          # force-pushes dist/ as the whole branch. The backfill step above is
+          # what actually keeps an artifact from disappearing.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
