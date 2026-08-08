@@ -59,6 +59,7 @@ async function fetchAllDays() {
   const now = new Date();
   const days = new Map();
   let restricted = 0;
+  let allTimeCommits = 0;
 
   for (let from = new Date(created); from < now; from.setUTCFullYear(from.getUTCFullYear() + 1)) {
     const to = new Date(from);
@@ -68,6 +69,7 @@ async function fetchAllDays() {
         user(login:$login){
           contributionsCollection(from:$from,to:$to){
             restrictedContributionsCount
+            totalCommitContributions
             contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } }
           }
         }
@@ -76,6 +78,7 @@ async function fetchAllDays() {
     );
     const cc = data.user.contributionsCollection;
     restricted += cc.restrictedContributionsCount;
+    allTimeCommits += cc.totalCommitContributions;
     for (const w of cc.contributionCalendar.weeks) {
       for (const d of w.contributionDays) {
         // Windows are day-aligned, so a date appears in at most one window with
@@ -91,6 +94,7 @@ async function fetchAllDays() {
   // guessed at. restrictedContributionsCount is private-repo activity, which is
   // the usual reason a day reads lower here than on github.com.
   console.log(`restrictedContributionsCount (all windows): ${restricted}`);
+  console.log(`totalCommitContributions summed over all years: ${allTimeCommits}`);
   console.log(
     "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
   );
