@@ -83,6 +83,7 @@ async function fetchAllDays() {
   const days = new Map();
   let restricted = 0;
   let allTimeCommits = 0;
+  const windows = [];
 
   for (let from = new Date(created); from < now; from.setUTCFullYear(from.getUTCFullYear() + 1)) {
     const to = new Date(from);
@@ -102,6 +103,15 @@ async function fetchAllDays() {
     const cc = data.user.contributionsCollection;
     restricted += cc.restrictedContributionsCount;
     allTimeCommits += cc.totalCommitContributions;
+    // Per-window totals. The aggregate collapsed from 2113 to 673 with a
+    // healthy token, so the question is which years come back empty rather
+    // than whether the fetch works at all.
+    windows.push({
+      from: from.toISOString().slice(0, 10),
+      to: (to > now ? now : to).toISOString().slice(0, 10),
+      calendarTotal: cc.contributionCalendar.totalContributions,
+      commitContributions: cc.totalCommitContributions,
+    });
     for (const w of cc.contributionCalendar.weeks) {
       for (const d of w.contributionDays) {
         // Windows are day-aligned, so a date appears in at most one window with
@@ -118,10 +128,11 @@ async function fetchAllDays() {
   // the usual reason a day reads lower here than on github.com.
   console.log(`restrictedContributionsCount (all windows): ${restricted}`);
   console.log(`totalCommitContributions summed over all years: ${allTimeCommits}`);
+  console.log("windows: " + windows.map((w) => `${w.from}=${w.calendarTotal}`).join(" "));
   console.log(
     "last 7 days: " + list.slice(-7).map((d) => `${d.date}=${d.count}`).join(" "),
   );
-  return { list, restricted, allTimeCommits, privateReposVisible, issuesTotal };
+  return { list, restricted, allTimeCommits, privateReposVisible, issuesTotal, windows };
 }
 
 /** Computes total contributions plus current and longest streak. */
@@ -249,7 +260,7 @@ async function main() {
   }
   const { writeFile, mkdir } = await import("node:fs/promises");
 
-  const { list: days, restricted, allTimeCommits, privateReposVisible, issuesTotal } =
+  const { list: days, restricted, allTimeCommits, privateReposVisible, issuesTotal, windows } =
     await fetchAllDays();
   if (!days.length) {
     throw new Error("contribution calendar came back empty");
@@ -277,6 +288,9 @@ async function main() {
         restrictedContributionsCount: restricted,
         privateReposVisibleToToken: privateReposVisible,
         issuesVisibleToToken: issuesTotal,
+        firstDayInCalendar: days[0]?.date ?? null,
+        daysInCalendar: days.length,
+        windows,
         currentStreak: stats.current,
         longestStreak: stats.longest,
         last14Days: days.slice(-14),
