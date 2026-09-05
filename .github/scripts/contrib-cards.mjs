@@ -80,6 +80,13 @@ async function fetchAllDays() {
   const created = new Date(user.createdAt);
   created.setUTCHours(0, 0, 0, 0);
   const now = new Date();
+  // GitHub dates a contribution by the commit's own UTC offset, so a commit
+  // made at 02:00 in UTC+05:30 belongs to a day that is still in the future by
+  // UTC. Ending the fetch at "now" hid those days until UTC caught up, which
+  // looks exactly like a lost streak from the author's side. Reach past today.
+  const horizon = new Date(now);
+  horizon.setUTCDate(horizon.getUTCDate() + 2);
+  horizon.setUTCHours(23, 59, 59, 999);
   const days = new Map();
   let restricted = 0;
   let allTimeCommits = 0;
@@ -98,7 +105,7 @@ async function fetchAllDays() {
           }
         }
       }`,
-      { login: LOGIN, from: from.toISOString(), to: (to > now ? now : to).toISOString() },
+      { login: LOGIN, from: from.toISOString(), to: (to > horizon ? horizon : to).toISOString() },
     );
     const cc = data.user.contributionsCollection;
     restricted += cc.restrictedContributionsCount;
@@ -108,7 +115,7 @@ async function fetchAllDays() {
     // than whether the fetch works at all.
     windows.push({
       from: from.toISOString().slice(0, 10),
-      to: (to > now ? now : to).toISOString().slice(0, 10),
+      to: (to > horizon ? horizon : to).toISOString().slice(0, 10),
       calendarTotal: cc.contributionCalendar.totalContributions,
       commitContributions: cc.totalCommitContributions,
     });
@@ -122,6 +129,17 @@ async function fetchAllDays() {
   }
   const list = [...days.entries()].sort((a, b) => a[0].localeCompare(b[0]))
     .map(([date, count]) => ({ date, count }));
+  // The horizon adds empty days past today. Drop those, but keep a future-dated
+  // day that actually carries contributions - that is the offset case above,
+  // and it is real activity.
+  const todayUTC = now.toISOString().slice(0, 10);
+  while (
+    list.length > 1 &&
+    list[list.length - 1].count === 0 &&
+    list[list.length - 1].date > todayUTC
+  ) {
+    list.pop();
+  }
 
   // Printed so a mismatch against the profile graph is diagnosable rather than
   // guessed at. restrictedContributionsCount is private-repo activity, which is
