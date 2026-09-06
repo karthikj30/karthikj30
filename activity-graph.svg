@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="320" viewBox="0 0 820 320" fill="none">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#58A6FF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#58A6FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="320" rx="6" fill="#0d1117"/>
+  <text x="410" y="30" text-anchor="middle" fill="#58A6FF" font-size="16" font-weight="700"
+        font-family="Segoe UI,Ubuntu,sans-serif">Contribution Activity - last 31 days (251 contributions)</text>
+  <line x1="55" y1="275.0" x2="795" y2="275.0"
+                  stroke="#8b949e" stroke-width="1" opacity="0.15"/>
+            <text x="45" y="279.0" text-anchor="end" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">0</text><line x1="55" y1="217.4" x2="795" y2="217.4"
+                  stroke="#8b949e" stroke-width="1" opacity="0.15"/>
+            <text x="45" y="221.4" text-anchor="end" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">11</text><line x1="55" y1="165.0" x2="795" y2="165.0"
+                  stroke="#8b949e" stroke-width="1" opacity="0.15"/>
+            <text x="45" y="169.0" text-anchor="end" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">21</text><line x1="55" y1="107.4" x2="795" y2="107.4"
+                  stroke="#8b949e" stroke-width="1" opacity="0.15"/>
+            <text x="45" y="111.4" text-anchor="end" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">32</text><line x1="55" y1="55.0" x2="795" y2="55.0"
+                  stroke="#8b949e" stroke-width="1" opacity="0.15"/>
+            <text x="45" y="59.0" text-anchor="end" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">42</text>
+  <path d="M55.0,55.0 L79.7,170.2 L104.3,217.4 L129.0,264.5 L153.7,254.0 L178.3,264.5 L203.0,227.9 L227.7,248.8 L252.3,259.3 L277.0,212.1 L301.7,243.6 L326.3,201.7 L351.0,259.3 L375.7,259.3 L400.3,264.5 L425.0,201.7 L449.7,259.3 L474.3,254.0 L499.0,269.8 L523.7,233.1 L548.3,269.8 L573.0,243.6 L597.7,259.3 L622.3,191.2 L647.0,227.9 L671.7,186.0 L696.3,217.4 L721.0,196.4 L745.7,269.8 L770.3,264.5 L795.0,264.5 L795.0,275 L55.0,275 Z" fill="url(#fade)"/>
+  <path d="M55.0,55.0 L79.7,170.2 L104.3,217.4 L129.0,264.5 L153.7,254.0 L178.3,264.5 L203.0,227.9 L227.7,248.8 L252.3,259.3 L277.0,212.1 L301.7,243.6 L326.3,201.7 L351.0,259.3 L375.7,259.3 L400.3,264.5 L425.0,201.7 L449.7,259.3 L474.3,254.0 L499.0,269.8 L523.7,233.1 L548.3,269.8 L573.0,243.6 L597.7,259.3 L622.3,191.2 L647.0,227.9 L671.7,186.0 L696.3,217.4 L721.0,196.4 L745.7,269.8 L770.3,264.5 L795.0,264.5" fill="none" stroke="#58A6FF" stroke-width="2.5"
+        stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="55.0" cy="55.0" r="2.5" fill="#58A6FF"/><circle cx="79.7" cy="170.2" r="2.5" fill="#58A6FF"/><circle cx="104.3" cy="217.4" r="2.5" fill="#58A6FF"/><circle cx="129.0" cy="264.5" r="2.5" fill="#58A6FF"/><circle cx="153.7" cy="254.0" r="2.5" fill="#58A6FF"/><circle cx="178.3" cy="264.5" r="2.5" fill="#58A6FF"/><circle cx="203.0" cy="227.9" r="2.5" fill="#58A6FF"/><circle cx="227.7" cy="248.8" r="2.5" fill="#58A6FF"/><circle cx="252.3" cy="259.3" r="2.5" fill="#58A6FF"/><circle cx="277.0" cy="212.1" r="2.5" fill="#58A6FF"/><circle cx="301.7" cy="243.6" r="2.5" fill="#58A6FF"/><circle cx="326.3" cy="201.7" r="2.5" fill="#58A6FF"/><circle cx="351.0" cy="259.3" r="2.5" fill="#58A6FF"/><circle cx="375.7" cy="259.3" r="2.5" fill="#58A6FF"/><circle cx="400.3" cy="264.5" r="2.5" fill="#58A6FF"/><circle cx="425.0" cy="201.7" r="2.5" fill="#58A6FF"/><circle cx="449.7" cy="259.3" r="2.5" fill="#58A6FF"/><circle cx="474.3" cy="254.0" r="2.5" fill="#58A6FF"/><circle cx="499.0" cy="269.8" r="2.5" fill="#58A6FF"/><circle cx="523.7" cy="233.1" r="2.5" fill="#58A6FF"/><circle cx="548.3" cy="269.8" r="2.5" fill="#58A6FF"/><circle cx="573.0" cy="243.6" r="2.5" fill="#58A6FF"/><circle cx="597.7" cy="259.3" r="2.5" fill="#58A6FF"/><circle cx="622.3" cy="191.2" r="2.5" fill="#58A6FF"/><circle cx="647.0" cy="227.9" r="2.5" fill="#58A6FF"/><circle cx="671.7" cy="186.0" r="2.5" fill="#58A6FF"/><circle cx="696.3" cy="217.4" r="2.5" fill="#58A6FF"/><circle cx="721.0" cy="196.4" r="2.5" fill="#58A6FF"/><circle cx="745.7" cy="269.8" r="2.5" fill="#58A6FF"/><circle cx="770.3" cy="264.5" r="2.5" fill="#58A6FF"/><circle cx="795.0" cy="264.5" r="2.5" fill="#58A6FF"/>
+  <text x="55.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 8</text><text x="129.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 11</text><text x="203.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 14</text><text x="277.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 17</text><text x="351.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 20</text><text x="425.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 23</text><text x="499.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 26</text><text x="573.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Aug 29</text><text x="647.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Sep 1</text><text x="721.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Sep 4</text><text x="795.0" y="295" text-anchor="middle" fill="#8b949e"
+                  font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">Sep 7</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" fill="none">
+  <rect width="495" height="195" rx="6" fill="#0d1117"/>
+  
+    
+    <text x="82.5" y="78" text-anchor="middle" fill="#58A6FF"
+          font-size="34" font-weight="700"
+          font-family="Segoe UI,Ubuntu,sans-serif">765</text>
+    <text x="82.5" y="122" text-anchor="middle" fill="#58A6FF" font-size="14"
+          font-weight="400"
+          font-family="Segoe UI,Ubuntu,sans-serif">Total Contributions</text>
+    <text x="82.5" y="145" text-anchor="middle" fill="#8b949e" font-size="12"
+          font-family="Segoe UI,Ubuntu,sans-serif">Jul 11, 2021 - Present</text>
+  
+    <circle cx="247.5" cy="72" r="34" fill="none" stroke="#58A6FF" stroke-width="5" opacity="0.85"/>
+    <text x="247.5" y="82" text-anchor="middle" fill="#58A6FF"
+          font-size="30" font-weight="700"
+          font-family="Segoe UI,Ubuntu,sans-serif">48</text>
+    <text x="247.5" y="122" text-anchor="middle" fill="#58A6FF" font-size="14"
+          font-weight="700"
+          font-family="Segoe UI,Ubuntu,sans-serif">Current Streak</text>
+    <text x="247.5" y="145" text-anchor="middle" fill="#8b949e" font-size="12"
+          font-family="Segoe UI,Ubuntu,sans-serif">Jul 22, 2026 - Sep 7, 2026</text>
+  
+    
+    <text x="412.5" y="78" text-anchor="middle" fill="#58A6FF"
+          font-size="34" font-weight="700"
+          font-family="Segoe UI,Ubuntu,sans-serif">48</text>
+    <text x="412.5" y="122" text-anchor="middle" fill="#58A6FF" font-size="14"
+          font-weight="400"
+          font-family="Segoe UI,Ubuntu,sans-serif">Longest Streak</text>
+    <text x="412.5" y="145" text-anchor="middle" fill="#8b949e" font-size="12"
+          font-family="Segoe UI,Ubuntu,sans-serif">Jul 22, 2026 - Sep 7, 2026</text>
+  <line x1="165" y1="40" x2="165" y2="155" stroke="#8b949e" stroke-width="1" opacity="0.35"/>
+  <line x1="330" y1="40" x2="330" y2="155" stroke="#8b949e" stroke-width="1" opacity="0.35"/>
+</svg>
