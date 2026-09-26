@@ -1,0 +1,10 @@
+OK   http=200 bytes=2411 capsule-render.vercel.app/api
+
+OK   http=200 bytes=2541 capsule-render.vercel.app/api
+Welcome to My Universe
+OK   http=200 bytes=6716 github-readme-stats-eight-gamma-66.vercel.app/api/top-langs/
+Most Used Languages
+OK   http=200 bytes=7740 github-readme-stats-eight-gamma-66.vercel.app/api
+Karthik Janardhan's GitHub Stats|Total Stars Earned:|62|Total Commits:|915|Total PRs:|15|Total Issues:|148|Contributed to (last year):|15
+OK   http=200 bytes=2240 quotes-github-readme.vercel.app/api
+
