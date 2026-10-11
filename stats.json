@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-10-11T00:22:31.866Z",
+  "totalContributions": 1196,
+  "allTimeCommitContributions": 973,
+  "restrictedContributionsCount": 0,
+  "privateReposVisibleToToken": 38,
+  "issuesVisibleToToken": 148,
+  "firstDayInCalendar": "2021-07-11",
+  "daysInCalendar": 1919,
+  "windows": [
+    {
+      "from": "2021-07-11",
+      "to": "2022-07-11",
+      "calendarTotal": 2,
+      "commitContributions": 0
+    },
+    {
+      "from": "2022-07-11",
+      "to": "2023-07-11",
+      "calendarTotal": 0,
+      "commitContributions": 0
+    },
+    {
+      "from": "2023-07-11",
+      "to": "2024-07-11",
+      "calendarTotal": 0,
+      "commitContributions": 0
+    },
+    {
+      "from": "2024-07-11",
+      "to": "2025-07-11",
+      "calendarTotal": 16,
+      "commitContributions": 15
+    },
+    {
+      "from": "2025-07-11",
+      "to": "2026-07-11",
+      "calendarTotal": 389,
+      "commitContributions": 352
+    },
+    {
+      "from": "2026-07-11",
+      "to": "2026-10-13",
+      "calendarTotal": 790,
+      "commitContributions": 606
+    }
+  ],
+  "currentStreak": {
+    "len": 81,
+    "start": "2026-07-22",
+    "end": "2026-10-10"
+  },
+  "longestStreak": {
+    "len": 81,
+    "start": "2026-07-22",
+    "end": "2026-10-10"
+  },
+  "last14Days": [
+    {
+      "date": "2026-09-28",
+      "count": 12
+    },
+    {
+      "date": "2026-09-29",
+      "count": 4
+    },
+    {
+      "date": "2026-09-30",
+      "count": 6
+    },
+    {
+      "date": "2026-10-01",
+      "count": 3
+    },
+    {
+      "date": "2026-10-02",
+      "count": 6
+    },
+    {
+      "date": "2026-10-03",
+      "count": 8
+    },
+    {
+      "date": "2026-10-04",
+      "count": 3
+    },
+    {
+      "date": "2026-10-05",
+      "count": 2
+    },
+    {
+      "date": "2026-10-06",
+      "count": 6
+    },
+    {
+      "date": "2026-10-07",
+      "count": 1
+    },
+    {
+      "date": "2026-10-08",
+      "count": 2
+    },
+    {
+      "date": "2026-10-09",
+      "count": 3
+    },
+    {
+      "date": "2026-10-10",
+      "count": 3
+    },
+    {
+      "date": "2026-10-11",
+      "count": 0
+    }
+  ]
+}
