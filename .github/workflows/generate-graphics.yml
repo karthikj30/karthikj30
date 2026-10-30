@@ -75,6 +75,62 @@ jobs:
           GH_TOKEN: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || github.token }}
         run: node .github/scripts/contrib-cards.mjs "${{ github.repository_owner }}" dist
 
+      # The two stats cards were the only graphics the viewer's browser still
+      # fetched live from Vercel. GitHub's image proxy caches by URL, so a
+      # single failed fetch during an outage stuck as a broken square until the
+      # URL changed - which is what happened over the three months the URL sat
+      # unchanged. Render them here instead and publish to the output branch
+      # like every other graphic, so they inherit the backfill and are served
+      # from the same host as the trophy and streak cards.
+      #
+      # The URLs live here rather than in the README now: the README points at
+      # the output branch, so there is no second copy to drift out of sync.
+      - name: Render the stats cards
+        continue-on-error: true
+        env:
+          HOST: https://github-readme-stats-eight-gamma-66.vercel.app
+          COMMON: hide_border=true&bg_color=0d1117&text_color=58A6FF&title_color=58A6FF
+        run: |
+          : > dist/cards-check.txt
+          render() {  # name, url
+            local out="dist/$1" url="$2" code
+            code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "$url") || code=000
+            if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
+              echo "FAIL http=${code} $1" | tee -a dist/cards-check.txt
+              head -c 200 /tmp/card.svg >> dist/cards-check.txt || true
+              echo >> dist/cards-check.txt
+              echo "::warning::$1 failed to render: http=${code}. Backfill will republish the last good copy."
+              return
+            fi
+            cp /tmp/card.svg "$out"
+            echo "OK   http=${code} bytes=$(wc -c < "$out") $1" | tee -a dist/cards-check.txt
+            # The text the card rendered, so the figures are verifiable without
+            # opening the image.
+            grep -oE '>[^<>]+</text>' "$out" | sed 's/^>//;s|</text>||' \
+              | paste -sd'|' - | cut -c1-300 | tee -a dist/cards-check.txt
+          }
+
+          render stats-card.svg \
+            "${HOST}/api?username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&count_private=true&${COMMON}&icon_color=58A6FF"
+          render top-langs.svg \
+            "${HOST}/api/top-langs/?username=${{ github.repository_owner }}&layout=compact&langs_count=8&${COMMON}"
+
+          # The remaining live cards are third-party and still only checked, not
+          # mirrored - they carry no data of ours worth preserving.
+          mapfile -t urls < <(grep -oE 'src="https://[^"]+/api[^"]*"' README.md \
+                              | sed 's/^src="//; s/"$//' | sort -u)
+          for u in "${urls[@]}"; do
+            code=$(curl -s -o /tmp/other.svg -w '%{http_code}' --max-time 30 "$u") || code=000
+            short="${u#https://}"; short="${short%%\?*}"
+            if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/other.svg; then
+              echo "FAIL http=${code} ${short}" | tee -a dist/cards-check.txt
+              echo "::warning::card failed: http=${code} ${short}"
+            else
+              echo "OK   http=${code} bytes=$(wc -c < /tmp/other.svg) ${short}" \
+                | tee -a dist/cards-check.txt
+            fi
+          done
+
       # The deploy step force-pushes dist/ as the ENTIRE contents of the output
       # branch, so the branch always ends up equal to dist/. keep_files does not
       # change that. Any generator that fails or silently no-ops therefore
@@ -86,7 +142,8 @@ jobs:
           mkdir -p dist
           missing=0
           for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg \
-                   streak.svg activity-graph.svg stats.json cards-check.txt; do
+                   streak.svg activity-graph.svg stats.json cards-check.txt \
+                   stats-card.svg top-langs.svg; do
             if [ -s "dist/$f" ]; then
               echo "$f: generated fresh"
             elif curl -fsSL --retry 3 -o "dist/$f" \
@@ -115,34 +172,6 @@ jobs:
       # nobody renders - it reported 10 issues while the real card showed 33.
       # Reading them from the README means it always tests what the profile
       # actually serves, and keeps working when the URLs change.
-      - name: Check the live cards render
-        continue-on-error: true
-        run: |
-          : > dist/cards-check.txt
-          mapfile -t urls < <(grep -oE 'src="https://[^"]+/api[^"]*"' README.md \
-                              | sed 's/^src="//; s/"$//' | sort -u)
-          if [ "${#urls[@]}" -eq 0 ]; then
-            echo "::warning::no card URLs found in README.md - check the src pattern"
-            echo "no card URLs found in README.md" >> dist/cards-check.txt
-          fi
-          for u in "${urls[@]}"; do
-            code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "$u") || code=000
-            short="${u#https://}"; short="${short%%\?*}"
-            if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
-              echo "FAIL http=${code} ${short}" | tee -a dist/cards-check.txt
-              head -c 200 /tmp/card.svg >> dist/cards-check.txt || true
-              echo >> dist/cards-check.txt
-              echo "::warning::card failed: http=${code} ${short}"
-            else
-              echo "OK   http=${code} bytes=$(wc -c < /tmp/card.svg) ${short}" \
-                | tee -a dist/cards-check.txt
-              # The text the card rendered, so figures are verifiable without
-              # opening the image.
-              grep -oE '>[^<>]+</text>' /tmp/card.svg | sed 's/^>//;s|</text>||' \
-                | paste -sd'|' - | cut -c1-300 | tee -a dist/cards-check.txt
-            fi
-          done
-
       - name: Push graphics to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
