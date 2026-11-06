@@ -20,7 +20,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # An expired PAT is silent: the generators that need it fail, the backfill
+      # republishes last week's copies, and the profile looks merely stale
+      # rather than broken. That is how the 2026-11-06 expiry went unnoticed.
+      # Publish the token's state so it is visible without opening a run log.
+      - name: Check the API token
+        continue-on-error: true
+        env:
+          TOK: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN }}
+        run: |
+          mkdir -p dist
+          if [ -z "$TOK" ]; then
+            echo "TOKEN: absent - no STATS_TOKENS or TROPHY_TOKEN secret is set." > dist/health.txt
+            echo "::warning::No PAT secret is set; trophy, streak, activity and pacman graphics cannot be generated."
+          else
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+                   -H "Authorization: Bearer $TOK" https://api.github.com/user) || code=000
+            if [ "$code" = "200" ]; then
+              echo "TOKEN: ok (http 200) as of $(date -u +%FT%TZ)" > dist/health.txt
+            else
+              echo "TOKEN: FAILING (http ${code}) as of $(date -u +%FT%TZ) - expired or revoked." > dist/health.txt
+              echo "::error::The PAT is not usable (http ${code}). Regenerate it and update the STATS_TOKENS secret."
+            fi
+          fi
+          cat dist/health.txt
+
+      # Non-blocking for the same reason as the trophy step below. This one was
+      # left blocking, and on 2026-11-06 the PAT expired: the step died with
+      # "GitHub GraphQL request failed: 401 Unauthorized" and took the whole job
+      # down with it, skipping the backfill and the deploy. So a decorative maze
+      # froze every card on the profile, including the two that need no token at
+      # all. No generator in this job may be load-bearing.
       - name: Generate pacman graphs
+        continue-on-error: true
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
@@ -141,13 +173,15 @@ jobs:
         run: |
           mkdir -p dist
           missing=0
+          stale=""
           for f in trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg \
                    streak.svg activity-graph.svg stats.json cards-check.txt \
-                   stats-card.svg top-langs.svg; do
+                   stats-card.svg top-langs.svg health.txt; do
             if [ -s "dist/$f" ]; then
               echo "$f: generated fresh"
             elif curl -fsSL --retry 3 -o "dist/$f" \
                 "https://raw.githubusercontent.com/${{ github.repository }}/output/$f"; then
+              stale="$stale $f"
               echo "::warning::$f was not generated this run; re-publishing the last good copy."
             else
               rm -f "dist/$f"
@@ -158,6 +192,15 @@ jobs:
           if [ "$missing" = "1" ]; then
             echo "::warning::Trophy generation needs a STATS_TOKENS or TROPHY_TOKEN secret (a PAT with repo, read:user, read:org)."
           fi
+          # Say so in a published file, not just the run log. A backfilled
+          # artifact is the symptom the profile shows as "my stats stopped
+          # updating", and the run log is the one place it was recorded.
+          if [ -n "$stale" ]; then
+            echo "STALE (re-published, not regenerated this run):$stale" >> dist/health.txt
+          else
+            echo "STALE: none - every artifact was generated this run." >> dist/health.txt
+          fi
+          tail -3 dist/health.txt
 
       - name: Verify all files exist
         run: |
