@@ -125,10 +125,20 @@ jobs:
         run: |
           : > dist/cards-check.txt
           render() {  # name, url
-            local out="dist/$1" url="$2" code
+            local out="dist/$1" url="$2" code why
             code=$(curl -s -o /tmp/card.svg -w '%{http_code}' --max-time 30 "$url") || code=000
-            if [ "$code" != "200" ] || ! grep -q "<svg" /tmp/card.svg; then
-              echo "FAIL http=${code} $1" | tee -a dist/cards-check.txt
+            # "<svg" is not enough of a check. When the generator's own PAT is
+            # dead it answers 200 with a valid SVG that only says "Something
+            # went wrong!" - so this accepted a 771-byte error card and
+            # overwrote the real one, which is what happened on 2026-11-06.
+            # Require a marker the error card does not have: every real card
+            # carries main-card-body, the error card carries only "message".
+            why=""
+            [ "$code" != "200" ] && why="http=${code}"
+            grep -q "Something went wrong" /tmp/card.svg && why="${why:+$why }error-card"
+            grep -q 'data-testid="main-card-body"' /tmp/card.svg || why="${why:+$why }no-card-body"
+            if [ -n "$why" ]; then
+              echo "FAIL ${why} $1" | tee -a dist/cards-check.txt
               head -c 200 /tmp/card.svg >> dist/cards-check.txt || true
               echo >> dist/cards-check.txt
               echo "::warning::$1 failed to render: http=${code}. Backfill will republish the last good copy."
