@@ -78,13 +78,14 @@ jobs:
       # all. No generator in this job may be load-bearing.
       - name: Generate pacman graphs
         continue-on-error: true
+        if: env.PAT != ''
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
           # Defaults to github.token, which is repo-scoped and sees only a
           # subset of the contribution calendar - the rendered maze came out
           # far sparser than the real graph. Reuse the user-scoped PAT.
-          github_token: ${{ env.PAT || github.token }}
+          github_token: ${{ env.PAT }}
 
       # continue-on-error matters here: this step reads user-level GraphQL data
       # and had been failing daily since 2026-07-22 with "Failed to fetch user
@@ -93,6 +94,7 @@ jobs:
       # the rest of the graphics down with it.
       - name: Generate trophy.svg
         continue-on-error: true
+        if: env.PAT != ''
         uses: Erik-Donath/github-profile-trophy@feature/generate-svg
         with:
           username: ${{ github.repository_owner }}
@@ -111,7 +113,7 @@ jobs:
           # data this action needs. Either STATS_TOKENS or TROPHY_TOKEN is used
           # when present; the last fallback only keeps the workflow valid while
           # neither secret exists.
-          token: ${{ env.PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ env.PAT }}
 
       # Replaces streak-stats.demolab.com and github-readme-activity-graph,
       # both shared public instances that started returning "failed to retrieve
@@ -126,10 +128,18 @@ jobs:
         continue-on-error: true
         run: node --test .github/scripts/contrib-cards.test.mjs
 
+      # Gated on a real PAT, not merely on a token that answers. github.token
+      # is repo-scoped: it reads the calendar but cannot see private work, so on
+      # 2026-11-08 it regenerated these cards with 765 contributions missing and
+      # Nov 7 as a zero - cutting a true 107-day streak down to 1. A card built
+      # from partial data is worse than yesterday's correct one, and it passes
+      # every freshness check, so the backfill cannot catch it. Without the PAT
+      # these steps must not run at all.
       - name: Generate streak + activity cards
         continue-on-error: true
+        if: env.PAT != ''
         env:
-          GH_TOKEN: ${{ env.PAT || github.token }}
+          GH_TOKEN: ${{ env.PAT }}
         run: node .github/scripts/contrib-cards.mjs "${{ github.repository_owner }}" dist
 
       # The two stats cards were the only graphics the viewer's browser still
