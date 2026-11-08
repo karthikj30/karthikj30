@@ -24,24 +24,49 @@ jobs:
       # republishes last week's copies, and the profile looks merely stale
       # rather than broken. That is how the 2026-11-06 expiry went unnoticed.
       # Publish the token's state so it is visible without opening a run log.
+      # An expired PAT is silent: the generators that need it fail, the backfill
+      # republishes last week's copies, and the profile looks merely stale
+      # rather than broken. That is how the 2026-11-06 expiry went unnoticed.
+      # Publish the token's state so it is visible without opening a run log.
+      #
+      # Several secret names are tried, not one. The name in use is STATS_TOKENS,
+      # plural, which is easy to recreate as STATS_TOKEN - and a new token under
+      # a name the workflow does not read looks exactly like a token that did
+      # not work. health.txt therefore names every candidate and its status, so
+      # a misnamed secret is obvious rather than invisible.
       - name: Check the API token
         continue-on-error: true
         env:
-          TOK: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN }}
+          STATS_TOKENS: ${{ secrets.STATS_TOKENS }}
+          STATS_TOKEN: ${{ secrets.STATS_TOKEN }}
+          TROPHY_TOKEN: ${{ secrets.TROPHY_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           mkdir -p dist
-          if [ -z "$TOK" ]; then
-            echo "TOKEN: absent - no STATS_TOKENS or TROPHY_TOKEN secret is set." > dist/health.txt
-            echo "::warning::No PAT secret is set; trophy, streak, activity and pacman graphics cannot be generated."
-          else
-            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
-                   -H "Authorization: Bearer $TOK" https://api.github.com/user) || code=000
-            if [ "$code" = "200" ]; then
-              echo "TOKEN: ok (http 200) as of $(date -u +%FT%TZ)" > dist/health.txt
-            else
-              echo "TOKEN: FAILING (http ${code}) as of $(date -u +%FT%TZ) - expired or revoked." > dist/health.txt
-              echo "::error::The PAT is not usable (http ${code}). Regenerate it and update the STATS_TOKENS secret."
+          : > dist/health.txt
+          winner=""
+          for n in STATS_TOKENS STATS_TOKEN TROPHY_TOKEN GH_PAT; do
+            v="${!n}"
+            if [ -z "$v" ]; then
+              echo "  ${n}: not set" >> dist/health.txt
+              continue
             fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+                   -H "Authorization: Bearer $v" https://api.github.com/user) || code=000
+            if [ "$code" = "200" ] && [ -z "$winner" ]; then
+              winner="$n"
+              echo "::add-mask::$v"
+              echo "PAT=$v" >> "$GITHUB_ENV"
+              echo "  ${n}: OK (http 200) <- using this one" >> dist/health.txt
+            else
+              echo "  ${n}: set but not usable (http ${code})" >> dist/health.txt
+            fi
+          done
+          if [ -n "$winner" ]; then
+            sed -i "1i TOKEN: ok via ${winner} as of $(date -u +%FT%TZ)" dist/health.txt
+          else
+            sed -i "1i TOKEN: FAILING as of $(date -u +%FT%TZ) - no secret below works. Regenerate the PAT (scopes: repo, read:user, read:org) and update the secret." dist/health.txt
+            echo "::error::No usable PAT. See health.txt on the output branch for which secret names were tried."
           fi
           cat dist/health.txt
 
@@ -59,7 +84,7 @@ jobs:
           # Defaults to github.token, which is repo-scoped and sees only a
           # subset of the contribution calendar - the rendered maze came out
           # far sparser than the real graph. Reuse the user-scoped PAT.
-          github_token: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || github.token }}
+          github_token: ${{ env.PAT || github.token }}
 
       # continue-on-error matters here: this step reads user-level GraphQL data
       # and had been failing daily since 2026-07-22 with "Failed to fetch user
@@ -86,7 +111,7 @@ jobs:
           # data this action needs. Either STATS_TOKENS or TROPHY_TOKEN is used
           # when present; the last fallback only keeps the workflow valid while
           # neither secret exists.
-          token: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ env.PAT || secrets.GITHUB_TOKEN }}
 
       # Replaces streak-stats.demolab.com and github-readme-activity-graph,
       # both shared public instances that started returning "failed to retrieve
@@ -104,7 +129,7 @@ jobs:
       - name: Generate streak + activity cards
         continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.STATS_TOKENS || secrets.TROPHY_TOKEN || github.token }}
+          GH_TOKEN: ${{ env.PAT || github.token }}
         run: node .github/scripts/contrib-cards.mjs "${{ github.repository_owner }}" dist
 
       # The two stats cards were the only graphics the viewer's browser still
