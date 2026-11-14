@@ -1,0 +1,6 @@
+TOKEN: FAILING as of 2026-11-14T20:30:42Z - no secret below works. Regenerate the PAT (scopes: repo, read:user, read:org) and update the secret.
+  STATS_TOKENS: set but not usable (http 401)
+  STATS_TOKEN: not set
+  TROPHY_TOKEN: set but not usable (http 401)
+  GH_PAT: not set
+STALE (re-published, not regenerated this run): trophy.svg pacman-contribution-graph.svg pacman-contribution-graph-dark.svg streak.svg activity-graph.svg stats.json stats-card.svg top-langs.svg

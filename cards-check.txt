@@ -1,0 +1,15 @@
+FAIL error-card no-card-body stats-card.svg
+
+    <svg width="576.5"  height="120" viewBox="0 0 576.5 120" fill="#0d1117" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #58A6FF }
+
+FAIL error-card no-card-body top-langs.svg
+
+    <svg width="576.5"  height="120" viewBox="0 0 576.5 120" fill="#0d1117" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #58A6FF }
+
+OK   http=200 bytes=2411 capsule-render.vercel.app/api
+OK   http=200 bytes=2541 capsule-render.vercel.app/api
+OK   http=200 bytes=2109 quotes-github-readme.vercel.app/api
